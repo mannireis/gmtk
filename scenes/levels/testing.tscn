@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bhrdrkr1fcxqb" path="res://scenes/levels/base_level.tscn" id="1_i1vqv"]
 [ext_resource type="Texture2D" uid="uid://bc1ayuixxupfe" path="res://icon.svg" id="1_whlnt"]
+[ext_resource type="PackedScene" uid="uid://dphe2nckhh24q" path="res://scenes/entities/push_button.tscn" id="3_3mgey"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3mgey"]
 texture = ExtResource("1_whlnt")
@@ -147,3 +148,6 @@ tile_set = SubResource("TileSet_x2n3b")
 
 [node name="SpawnPoint" type="Marker2D" parent="." index="4" unique_id=755381606]
 position = Vector2(-58, -5)
+
+[node name="PushButton" parent="." index="5" unique_id=283099239 instance=ExtResource("3_3mgey")]
+position = Vector2(41, 14)
