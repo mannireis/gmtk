@@ -2,12 +2,14 @@
 
 [ext_resource type="Script" uid="uid://bgv0ihfjhlraa" path="res://scripts/plaer/main.gd" id="1_s4h7g"]
 [ext_resource type="Texture2D" uid="uid://bc1ayuixxupfe" path="res://icon.svg" id="1_uqj2r"]
+[ext_resource type="PackedScene" uid="uid://cb5qhngt57ovj" path="res://scenes/player/corpse.tscn" id="2_5l0vc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s4h7g"]
 size = Vector2(14, 14)
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=1003857398]
 script = ExtResource("1_s4h7g")
+corpse_scene = ExtResource("2_5l0vc")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1196720412]
 position = Vector2(2.9802322e-08, -1.7881393e-07)

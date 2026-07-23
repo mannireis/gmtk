@@ -3,6 +3,8 @@ extends CharacterBody2D
 @onready var coyote_timer: Timer = $CoyoteTimer
 @onready var jump_buffer_timer: Timer = $JumpBufferTimer
 
+@export var corpse_scene: PackedScene
+
 const jump_height: float = -230.0
 const max_gravity: float = 14.5
 const max_speed: float = 120.0
@@ -33,6 +35,7 @@ func _physics_process(delta: float) -> void:
 		gravity = lerp(gravity, max_gravity, 12.3 * delta)
 
 	if Input.is_action_just_pressed("Jump"):
+		_spawn_corpse()
 		if jump_buffer_timer.is_stopped():
 			jump_buffer_timer.start()
 		if not jump_buffer_timer.is_stopped() and (not coyote_timer.is_stopped()) or is_on_floor():
@@ -47,10 +50,13 @@ func _physics_process(delta: float) -> void:
 
 
 func _spawn_corpse() -> void:
-	# We need to create a scene that is called corpse that is a RigidBody2D and then spawn that scene in the players location
-	pass
+	# We need to create a scene that is called corpse that is a RigidBody2D and then spawn that scene in the players location - maddy
+	print("spawning corpse")
+	var corpse = corpse_scene.instantiate()
+	corpse.global_position = global_position
+	get_parent().add_child(corpse)
 
 
 func _respawn() -> void:
-	# Teleport back to level start
+	# Teleport back to level start 
 	pass
