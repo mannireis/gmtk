@@ -23,6 +23,8 @@ func _get_spawn_point() -> Vector2:
 
 
 func _on_death_timer_timeout() -> void:
+	player._spawn_corpse()
+	await get_tree().create_timer(0.05).timeout
 	player._respawn()
 
 

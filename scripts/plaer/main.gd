@@ -15,6 +15,7 @@ const max_gravity: float = 14.5
 const max_speed: float = 120.0
 const accelaration: float = 8.0
 const friction: float = 10.0
+const push_force: float = 100.0
 
 var coyote_time_activated: bool = false
 
@@ -59,25 +60,29 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
+	var pushed_bodies: Array[RigidBody2D] = []
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
 		
-		if collider is RigidBody2D:
-			collider.apply_central_impulse(-collision.get_normal() * 14)
+		if collider is RigidBody2D and not collider in pushed_bodies:
+			var push_dir = -collision.get_normal()
+			push_dir.y = 0
+			collider.apply_central_impulse(push_dir.normalized() * push_force * delta * 60.0)
+			pushed_bodies.append(collider)
+			
 
 
 func _spawn_corpse() -> void:
 	# We need to create a scene that is called corpse that is a RigidBody2D and then spawn that scene in the players location - maddy [X]
-	# players location works but please don't spawn it there lmao - it blasts it away lol, instead we need to send a signal to main
+	var death_pos = global_position
 	print("spawning corpse")
 	var corpse = corpse_scene.instantiate()
-	corpse.global_position = global_position
+	corpse.global_position = death_pos
 	get_parent().add_child(corpse)
 
 
 func _respawn() -> void:
-	_spawn_corpse()
 	global_position = spawn_point
 	velocity = Vector2.ZERO
 	player_respawned.emit()
