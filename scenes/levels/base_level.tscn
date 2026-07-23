@@ -1,3 +1,6 @@
 [gd_scene format=3 uid="uid://bhrdrkr1fcxqb"]
 
-[node name="BaseRoom" type="Node2D" unique_id=379576062]
+[ext_resource type="Script" uid="uid://cjlfy0yecqp8x" path="res://scripts/level/base_level.gd" id="1_md458"]
+
+[node name="BaseLevel" type="Node2D" unique_id=379576062]
+script = ExtResource("1_md458")
