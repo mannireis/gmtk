@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://dyxyd7brailkq"]
+
+[ext_resource type="Script" uid="uid://bgv0ihfjhlraa" path="res://scripts/plaer/main.gd" id="1_s4h7g"]
+[ext_resource type="Texture2D" uid="uid://bc1ayuixxupfe" path="res://icon.svg" id="1_uqj2r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s4h7g"]
+size = Vector2(14, 14)
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1003857398]
+script = ExtResource("1_s4h7g")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1196720412]
+position = Vector2(2.9802322e-08, -1.7881393e-07)
+scale = Vector2(0.109375, 0.10937499)
+texture = ExtResource("1_uqj2r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1406791000]
+shape = SubResource("RectangleShape2D_s4h7g")
+
+[node name="CoyoteTimer" type="Timer" parent="." unique_id=1287454848]
+wait_time = 0.1
+one_shot = true
+
+[node name="JumpBufferTimer" type="Timer" parent="." unique_id=933284585]
+wait_time = 0.12
+one_shot = true
