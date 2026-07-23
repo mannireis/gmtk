@@ -44,3 +44,13 @@ func _physics_process(delta: float) -> void:
 	velocity.y += gravity
 	
 	move_and_slide()
+
+
+func _spawn_corpse() -> void:
+	# We need to create a scene that is called corpse that is a RigidBody2D and then spawn that scene in the players location
+	pass
+
+
+func _respawn() -> void:
+	# Teleport back to level start
+	pass
