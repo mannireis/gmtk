@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@onready var death_timer: Timer = $DeathTimer
 @onready var coyote_timer: Timer = $CoyoteTimer
 @onready var jump_buffer_timer: Timer = $JumpBufferTimer
 
@@ -15,8 +16,19 @@ var coyote_time_activated: bool = false
 
 var gravity: float = 12.0
 
+var spawn_point: Vector2
+
+
+func _ready() -> void:
+	var level := get_tree().current_scene as Level
+	death_timer.start()
+	if level:
+		spawn_point = level._get_spawn_point()
 
 func _physics_process(delta: float) -> void:
+	$CanvasLayer/Label.text = str(death_timer.time_left)
+	
+	
 	var x_input: float = Input.get_axis("Left", "Right")
 	var velocity_weight: float = delta * (accelaration if x_input else friction)
 	velocity.x = lerp(velocity.x, x_input * max_speed, velocity_weight)
@@ -35,7 +47,6 @@ func _physics_process(delta: float) -> void:
 		gravity = lerp(gravity, max_gravity, 12.3 * delta)
 
 	if Input.is_action_just_pressed("Jump"):
-		_spawn_corpse()
 		if jump_buffer_timer.is_stopped():
 			jump_buffer_timer.start()
 		if not jump_buffer_timer.is_stopped() and (not coyote_timer.is_stopped()) or is_on_floor():
@@ -58,6 +69,11 @@ func _spawn_corpse() -> void:
 
 
 func _respawn() -> void:
-	# Teleport back to level start 
-	# To do this im thinking each lever has a start marker
-	pass
+	_spawn_corpse()
+	global_position = spawn_point
+	velocity = Vector2.ZERO
+	death_timer.start()
+
+
+func _on_death_timer_timeout() -> void:
+	_respawn()

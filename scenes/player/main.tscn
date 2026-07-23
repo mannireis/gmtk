@@ -26,3 +26,14 @@ one_shot = true
 [node name="JumpBufferTimer" type="Timer" parent="." unique_id=933284585]
 wait_time = 0.12
 one_shot = true
+
+[node name="DeathTimer" type="Timer" parent="." unique_id=1272719789]
+one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1245967479]
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=294717959]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
