@@ -59,4 +59,5 @@ func _spawn_corpse() -> void:
 
 func _respawn() -> void:
 	# Teleport back to level start 
+	# To do this im thinking each lever has a start marker
 	pass
