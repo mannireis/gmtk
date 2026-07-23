@@ -50,7 +50,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _spawn_corpse() -> void:
-	# We need to create a scene that is called corpse that is a RigidBody2D and then spawn that scene in the players location - maddy
+	# We need to create a scene that is called corpse that is a RigidBody2D and then spawn that scene in the players location - maddy [X]
 	print("spawning corpse")
 	var corpse = corpse_scene.instantiate()
 	corpse.global_position = global_position
