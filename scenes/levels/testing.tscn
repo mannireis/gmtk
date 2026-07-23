@@ -1,10 +1,9 @@
 [gd_scene format=4 uid="uid://vq4wbvyaj30e"]
 
-[ext_resource type="Script" uid="uid://cjlfy0yecqp8x" path="res://scripts/level/base_level.gd" id="1_3mgey"]
+[ext_resource type="PackedScene" uid="uid://bhrdrkr1fcxqb" path="res://scenes/levels/base_level.tscn" id="1_i1vqv"]
 [ext_resource type="Texture2D" uid="uid://bc1ayuixxupfe" path="res://icon.svg" id="1_whlnt"]
-[ext_resource type="PackedScene" uid="uid://dyxyd7brailkq" path="res://scenes/player/main.tscn" id="2_i1vqv"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x2n3b"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3mgey"]
 texture = ExtResource("1_whlnt")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -135,23 +134,16 @@ texture = ExtResource("1_whlnt")
 7:7/0 = 0
 7:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
-[sub_resource type="TileSet" id="TileSet_mouox"]
+[sub_resource type="TileSet" id="TileSet_x2n3b"]
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_x2n3b")
+sources/0 = SubResource("TileSetAtlasSource_3mgey")
 
-[node name="Level" type="Node2D" unique_id=1176676406 node_paths=PackedStringArray("spawn_point")]
-script = ExtResource("1_3mgey")
+[node name="BaseLevel" unique_id=379576062 node_paths=PackedStringArray("spawn_point") instance=ExtResource("1_i1vqv")]
 spawn_point = NodePath("SpawnPoint")
-metadata/_custom_type_script = "uid://cjlfy0yecqp8x"
 
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1209416019]
+[node name="TileMapLayer" type="TileMapLayer" parent="." index="3" unique_id=1552576812]
 tile_map_data = PackedByteArray("AAD9/wEAAAADAAAAAAD+/wEAAAABAAAAAAD//wEAAAACAAAAAAAAAAEAAAADAAAAAAABAAEAAAAEAAAAAAACAAEAAAABAAAAAAADAAEAAAACAAAAAAAEAAEAAAADAAAAAAAFAAEAAAABAAAAAAAGAAEAAAABAAAAAAAHAAEAAAABAAAAAAAIAAEAAAACAAAAAAD3/wEAAAAFAAAAAAD4/wEAAAABAAAAAAD5/wEAAAACAAAAAAD6/wEAAAADAAAAAAD7/wEAAAABAAAAAAD8/wEAAAACAAAAAADw/wEAAAABAAAAAADx/wEAAAACAAAAAADy/wEAAAADAAAAAADz/wEAAAABAAAAAAD0/wEAAAACAAAAAAD1/wEAAAADAAAAAAD2/wEAAAAEAAAAAAAJAAEAAAADAAAAAAAKAAEAAAAEAAAAAAALAAEAAAAFAAAAAAAMAAEAAAAGAAAAAAA=")
-tile_set = SubResource("TileSet_mouox")
+tile_set = SubResource("TileSet_x2n3b")
 
-[node name="SpawnPoint" type="Marker2D" parent="." unique_id=809938685]
-position = Vector2(-36, -89)
-
-[node name="CharacterBody2D" parent="." unique_id=1003857398 instance=ExtResource("2_i1vqv")]
-position = Vector2(-34, -7)
-
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=1970490747]
+[node name="SpawnPoint" type="Marker2D" parent="." index="4" unique_id=755381606]
+position = Vector2(-58, -5)

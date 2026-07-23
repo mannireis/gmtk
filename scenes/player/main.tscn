@@ -7,6 +7,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s4h7g"]
 size = Vector2(14, 14)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5l0vc"]
+size = Vector2(14, 3)
+
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=1003857398]
 script = ExtResource("1_s4h7g")
 corpse_scene = ExtResource("2_5l0vc")
@@ -27,13 +30,12 @@ one_shot = true
 wait_time = 0.12
 one_shot = true
 
-[node name="DeathTimer" type="Timer" parent="." unique_id=1272719789]
-one_shot = true
+[node name="HeadArea" type="Area2D" parent="." unique_id=1836950542]
+collision_layer = 3
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1245967479]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HeadArea" unique_id=1798758964]
+position = Vector2(0, -5.5)
+shape = SubResource("RectangleShape2D_5l0vc")
 
-[node name="Label" type="Label" parent="CanvasLayer" unique_id=294717959]
-offset_right = 40.0
-offset_bottom = 23.0
-
-[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
+[connection signal="body_entered" from="HeadArea" to="." method="_on_head_area_body_entered"]
+[connection signal="body_exited" from="HeadArea" to="." method="_on_head_area_body_exited"]

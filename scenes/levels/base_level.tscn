@@ -1,6 +1,22 @@
 [gd_scene format=3 uid="uid://bhrdrkr1fcxqb"]
 
 [ext_resource type="Script" uid="uid://cjlfy0yecqp8x" path="res://scripts/level/base_level.gd" id="1_md458"]
+[ext_resource type="PackedScene" uid="uid://dyxyd7brailkq" path="res://scenes/player/main.tscn" id="2_uk53i"]
+[ext_resource type="PackedScene" uid="uid://xs4ea8ecld6m" path="res://scenes/ui/hud.tscn" id="3_ukglk"]
 
 [node name="BaseLevel" type="Node2D" unique_id=379576062]
 script = ExtResource("1_md458")
+
+[node name="CharacterBody2D" parent="." unique_id=1003857398 instance=ExtResource("2_uk53i")]
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=838095642]
+
+[node name="DeathTimer" type="Timer" parent="." unique_id=1146644864]
+wait_time = 10.0
+one_shot = true
+
+[node name="HUD" parent="." unique_id=1532659558 instance=ExtResource("3_ukglk")]
+
+[connection signal="death_timer_timed_out" from="." to="." method="_on_death_timer_timed_out"]
+[connection signal="player_respawned" from="CharacterBody2D" to="." method="_on_character_body_2d_player_respawned"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
