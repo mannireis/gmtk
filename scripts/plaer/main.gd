@@ -60,6 +60,8 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
+	# this is how you move corpses around! but it needs a LOT of work
+	# good luck x -mart
 	var pushed_bodies: Array[RigidBody2D] = []
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)

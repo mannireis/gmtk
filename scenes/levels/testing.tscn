@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bhrdrkr1fcxqb" path="res://scenes/levels/base_level.tscn" id="1_i1vqv"]
 [ext_resource type="Texture2D" uid="uid://bc1ayuixxupfe" path="res://icon.svg" id="1_whlnt"]
 [ext_resource type="PackedScene" uid="uid://dphe2nckhh24q" path="res://scenes/entities/push_button.tscn" id="3_3mgey"]
+[ext_resource type="PackedScene" uid="uid://bknwv65cbcjlc" path="res://scenes/entities/door.tscn" id="4_x2n3b"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3mgey"]
 texture = ExtResource("1_whlnt")
@@ -151,3 +152,10 @@ position = Vector2(-58, -5)
 
 [node name="PushButton" parent="." index="5" unique_id=283099239 instance=ExtResource("3_3mgey")]
 position = Vector2(41, 14)
+
+[node name="Door" parent="." index="6" unique_id=181521046 instance=ExtResource("4_x2n3b")]
+position = Vector2(84, 0)
+
+[node name="Camera2D" type="Camera2D" parent="." index="7" unique_id=1813699366]
+
+[connection signal="state_changed" from="PushButton" to="Door" method="_on_push_button_state_changed"]

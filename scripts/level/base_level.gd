@@ -6,6 +6,7 @@ signal death_timer_timed_out
 @export var spawn_point: Marker2D
 
 @onready var player = $CharacterBody2D
+@onready var camera = $Camera2D
 @onready var death_timer = $DeathTimer
 @onready var hud = $HUD
 
@@ -16,6 +17,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	hud.set_timer_label(death_timer.time_left)
+	camera.position.x = player.position.x
 
 
 func _get_spawn_point() -> Vector2:
