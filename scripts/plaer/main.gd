@@ -62,18 +62,20 @@ func _physics_process(delta: float) -> void:
 
 func _spawn_corpse() -> void:
 	# We need to create a scene that is called corpse that is a RigidBody2D and then spawn that scene in the players location - maddy [X]
+	var death_pos = global_position
 	print("spawning corpse")
 	var corpse = corpse_scene.instantiate()
-	corpse.global_position = global_position
+	corpse.global_position = death_pos
 	get_parent().add_child(corpse)
 
 
 func _respawn() -> void:
-	_spawn_corpse()
 	global_position = spawn_point
 	velocity = Vector2.ZERO
 	death_timer.start()
 
 
 func _on_death_timer_timeout() -> void:
+	_spawn_corpse()
+	await get_tree().create_timer(0.05).timeout
 	_respawn()

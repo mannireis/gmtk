@@ -155,3 +155,4 @@ position = Vector2(-36, -89)
 position = Vector2(-34, -7)
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=1970490747]
+position_smoothing_enabled = true
