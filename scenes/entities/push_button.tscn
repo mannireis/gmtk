@@ -1,21 +1,66 @@
 [gd_scene format=3 uid="uid://dphe2nckhh24q"]
 
-[ext_resource type="Texture2D" uid="uid://bc1ayuixxupfe" path="res://icon.svg" id="1_pnfby"]
+[ext_resource type="Texture2D" uid="uid://dboyx7nd4x21f" path="res://assets/tileset.png" id="2_4tjrn"]
 [ext_resource type="Script" uid="uid://c3saysyxmpwcg" path="res://scripts/entities/push_button.gd" id="2_ptg08"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ptg08"]
-size = Vector2(200.00006, 200.00006)
+size = Vector2(8, 6)
 
-[node name="PushButton" type="Area2D" unique_id=283099239]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ob7kt"]
+atlas = ExtResource("2_4tjrn")
+region = Rect2(8, 24, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vcit3"]
+atlas = ExtResource("2_4tjrn")
+region = Rect2(16, 24, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ptg08"]
+atlas = ExtResource("2_4tjrn")
+region = Rect2(8, 24, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ab1j3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ob7kt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vcit3")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vcit3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ob7kt")
+}],
+"loop": false,
+"name": &"default_2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ptg08")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="PushButton2D" type="Area2D" unique_id=283099239]
 script = ExtResource("2_ptg08")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1118056387]
-scale = Vector2(0.08, 0.08)
-texture = ExtResource("1_pnfby")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1864068784]
-scale = Vector2(0.049999986, 0.049999986)
 shape = SubResource("RectangleShape2D_ptg08")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=234340825]
+sprite_frames = SubResource("SpriteFrames_ab1j3")
+animation = &"idle"
+autoplay = "idle"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

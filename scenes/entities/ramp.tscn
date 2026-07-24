@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://d35ul1irio72t"]
+
+[ext_resource type="Script" uid="uid://dj0x1dpfq87yr" path="res://scripts/entities/ramp.gd" id="1_5s5ue"]
+[ext_resource type="Texture2D" uid="uid://dboyx7nd4x21f" path="res://assets/tileset.png" id="2_dffjr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7skhp"]
+size = Vector2(24, 8)
+
+[node name="Ramp" type="StaticBody2D" unique_id=1857963848]
+script = ExtResource("1_5s5ue")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2075744326]
+shape = SubResource("RectangleShape2D_7skhp")
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=1843486317]
+texture = ExtResource("2_dffjr")
+region_enabled = true
+region_rect = Rect2(24, 24, 24, 8)

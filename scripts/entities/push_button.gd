@@ -1,29 +1,23 @@
 extends Area2D
+class_name PushButton2D
 
-signal state_changed(state: states)
+signal pressed
+signal exited
 
-@onready var sprite = $Sprite2D
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
-enum states {IDLE, PRESSED}
-var state = states.PRESSED
+var pressing_bodies: int = 0
 
-
-func _process(delta: float) -> void:
-	if state == states.PRESSED:
-		sprite.scale.y = 0.06
-	else:
-		sprite.scale.y = 0.08
-
-
-func _change_state() -> void:
-	state = states.PRESSED if state == states.IDLE else states.IDLE
+func _on_body_entered(body: Node2D) -> void:
+	pressing_bodies += 1
+	if not pressing_bodies == 0:
+		animated_sprite_2d.play("default")
+		pressed.emit()
 
 
 func _on_body_exited(body: Node2D) -> void:
-	_change_state()
-	state_changed.emit(state)
-
-
-func _on_body_entered(body: Node2D) -> void:
-	_change_state()
-	state_changed.emit(state)
+	pressing_bodies -= 1
+	if pressing_bodies == 0:
+		animated_sprite_2d.play("default_2")
+		pressing_bodies = 0 
+		exited.emit()
